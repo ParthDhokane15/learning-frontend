@@ -3,7 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <!-- FAVICON:image near the title -->
+    <title>Learning HTML</title>
+    <link rel="icon" type="image/x-icon" href="coffee.jpg">
+
+    <style>
+        .city {
+            background-color: tomato;
+            color: white;
+            padding: 10px;
+        }
+    
+        .main {
+            text-align: center;
+        }
+    </style>
+    <style>
+        /* Style the element with the id "myHeader" */
+        #myHeader {
+            background-color: lightblue;
+            color: black;
+            padding: 40px;
+            text-align: center;
+        }
+    
+        
+        </style>
 </head>
 <body>
     <!-- Heading with an id -->
@@ -136,7 +162,173 @@
     Use the HTML width and height attributes or the CSS width and height properties to define the size of the image
     Use the CSS float property to let the image float to the left or to the right -->
 
-    
+    <!-- Tag Description
+    <img> Defines an image
+    <map> Defines an image map
+    <area> Defines a clickable area inside an image map
+    <picture> Defines a container for multiple image resources -->
 
+        <h2>Image Maps</h2>
+        <p>Click on the cup of coffee to execute an alert, then go to the coffee info page:</p>
+        
+        <!-- Change this to the actual filename of your main workplace image -->
+        <img src="workplace.jpg" alt="Workplace" usemap="#workmap" width="400" height="379">
+        
+        <map name="workmap">
+            <!--
+                    coords="337,300,44" is a circle around the coffee cup.
+                    Adjust if your image dimensions differ.
+                  -->
+            <area shape="circle" coords="337,300,44" href="coffee.html" onclick="return coffeeClick();" alt="Coffee Cup">
+        </map>
+        
+        <script>
+            function coffeeClick() {
+                alert("You clicked the coffee cup!");
+                // returning true allows the href to be followed
+                return true;
+            }
+        </script>
+
+    <h2>The picture Element</h2>
+
+    <picture>
+        <source media="(min-width: 650px)" srcset="workplace.jpg">
+        <source media="(min-width: 465px)" srcset="laptop.jpg">
+        <img src="mobile.jpg" style="width:auto;">
+    </picture>
+
+    <p>Resize the browser to see different versions of the picture loading at different viewport sizes.
+        The browser looks for the first source element where the media query matches the user's current viewport width,
+        and fetches the image specified in the srcset attribute.</p>
+
+    <p>The img element is required as the last child tag of the picture declaration block.
+        The img element is used to provide backward compatibility for browsers that do not support the picture element, or
+        if none of the source tags matched.
+    </p>
+    
+    <h2>An Unordered HTML List</h2>
+    
+    <ul>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+    </ul>
+    
+    <h2>An Ordered HTML List</h2>
+    
+    <ol>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+    </ol>
+
+    <!-- <ul> Defines an unordered list
+    <ol> Defines an ordered list
+    <li> Defines a list item
+    <dl> Defines a description list
+    <dt> Defines a term in a description list
+    <dd> Describes the term in a description list -->
+    <h2>A Nested List</h2>
+    <p>Lists can be nested (list inside list):</p>
+    
+    <ul>
+        <li>Coffee</li>
+        <li>Tea
+            <ul>
+                <li>Black tea</li>
+                <li>Green tea</li>
+            </ul>
+        </li>
+        <li>Milk</li>
+    </ul>
+
+    <p style="border: 1px solid black">Hello World</p>
+    <div style="border: 1px solid black">Hello World</div>
+    
+    <p>The P and the DIV elements are both block elements, and they will always start on a new line and take up the full
+        width available (stretches out to the left and right as far as it can).</p>
+
+    <!-- CLASS -->
+    
+    <h2>Multiple Classes</h2>
+    <p>Here, all three h2 elements belongs to the "city" class. In addition, London also belongs to the "main" class, which
+        center-aligns the text.</p>
+    
+    <h2 class="city main">London</h2>
+    <h2 class="city">Paris</h2>
+    <h2 class="city">Tokyo</h2>
+    
+    <h2>Use of The class Attribute in JavaScript</h2>
+    <p>Click the button to hide all elements with class name "city":</p>
+    
+    <button onclick="myFunction()">Hide elements</button>
+    
+    <h2 class="city">London</h2>
+    <p>London is the capital of England.</p>
+    
+    <h2 class="city">Paris</h2>
+    <p>Paris is the capital of France.</p>
+    
+    <h2 class="city">Tokyo</h2>
+    <p>Tokyo is the capital of Japan.</p>
+    
+    <script>
+        function myFunction() {
+            var x = document.getElementsByClassName("city");
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+        }
+    </script>
+    <h2>Difference Between Class and ID</h2>
+    <p>A class name can be used by multiple HTML elements, while an id name must only be used by one HTML element within the
+        page:</p>
+
+    <!-- An element with a unique id -->
+    <h1 id="myHeader">My Cities</h1>
+
+    <!-- Multiple elements with same class -->
+    <h2 class="city">London</h2>
+    <p>London is the capital of England.</p>
+
+    <h2 class="city">Paris</h2>
+    <p>Paris is the capital of France.</p>
+
+    <h2 class="city">Tokyo</h2>
+    <p>Tokyo is the capital of Japan.</p>
+
+    <h2>Using The id Attribute in JavaScript</h2>
+    <p>JavaScript can access an element with a specified id by using the getElementById() method:</p>
+    
+    <h1 id="myHeader2">Hello World!</h1>
+    <button onclick="displayResult()">Change text</button>
+    
+    <script>
+        function displayResult() {
+            document.getElementById("myHeader2").innerHTML = "Have a nice day!";
+        }
+    </script>
+
+    <h2>Iframe - Target for a Link</h2>
+
+    <iframe src="demo_iframe.html" name="iframe_a" height="300px" width="100%" title="Iframe Example"></iframe>
+
+
+    <p><a href="coffee.html" target="iframe_a">coffee details</a></p>
+
+    <p>When the target attribute of a link matches the name of an iframe, the link will open in the iframe.</p>
+    
+    <p id="demo"></p>
+    
+    <script>
+        document.getElementById("demo").innerHTML = "Hello JavaScript!";
+    </script>
+    
+    <noscript>Sorry, your browser does not support JavaScript!</noscript>
+    
+    <p>A browser without support for JavaScript will show the text written inside the noscript element.</p>
+
+    
 </body>
 </html>
