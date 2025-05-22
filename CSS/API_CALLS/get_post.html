@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET, POST, PATCH Example</title>
+</head>
+
+<body>
+    <h1>API Method Demonstration</h1>
+    <button id="getBtn">GET Data</button>
+    <button id="postBtn">POST Data</button>
+    <button id="patchBtn">PATCH Data</button>
+
+    <div id="output" style="margin-top: 20px; border: 1px solid black; padding: 10px;">
+        <h2>Response:</h2>
+        <pre id="response"></pre>
+    </div>
+
+    <script>
+        const output = document.getElementById("response");
+
+        // GET Request
+        document.getElementById("getBtn").addEventListener("click", () => {
+            fetch('https://jsonplaceholder.typicode.com/posts/1')
+                .then(response => response.json())
+                .then(data => {
+                    output.textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(err => console.error('GET error:', err));
+        });
+
+        // POST Request
+        document.getElementById("postBtn").addEventListener("click", () => {
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: 'New Post',
+                    body: 'This is a sample post created using POST.',
+                    userId: 1,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    output.textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(err => console.error('POST error:', err));
+        });
+
+        // PATCH Request
+        document.getElementById("patchBtn").addEventListener("click", () => {
+            fetch('https://jsonplaceholder.typicode.com/posts/1', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: 'Updated Title',
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    output.textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(err => console.error('PATCH error:', err));
+        });
+    </script>
+</body>
+
+</html>

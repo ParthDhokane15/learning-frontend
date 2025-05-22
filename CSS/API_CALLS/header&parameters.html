@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headers and Query Parameters</title>
+</head>
+
+<body>
+    <h1>Headers and Query Parameters Demo</h1>
+    <button id="fetchWithHeaders">Fetch with Headers</button>
+    <button id="fetchWithQuery">Fetch with Query Parameters</button>
+
+    <div id="output" style="margin-top: 20px; border: 1px solid black; padding: 10px;">
+        <h2>Response:</h2>
+        <pre id="response"></pre>
+    </div>
+
+    <script>
+        const responseOutput = document.getElementById("response");
+
+        // Fetch data with custom headers
+        document.getElementById("fetchWithHeaders").addEventListener("click", () => {
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json', // Specifies JSON data
+                    'Custom-Header': 'CustomValue',    // Adds a custom header
+                },
+            })
+                .then(response => response.json())       // Convert response to JSON
+                .then(data => {
+                    responseOutput.textContent = JSON.stringify(data.slice(0, 3), null, 2);
+                    // Display first 3 posts in a readable format
+                })
+                .catch(err => console.error('Header Fetch Error:', err)); // Log errors
+        });
+
+        // Fetch data using query parameters
+        document.getElementById("fetchWithQuery").addEventListener("click", () => {
+            const userId = 1; // Filter posts by user ID
+            fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+                .then(response => response.json())       // Convert response to JSON
+                .then(data => {
+                    responseOutput.textContent = JSON.stringify(data, null, 2);
+                    // Display filtered posts in a readable format
+                })
+                .catch(err => console.error('Query Fetch Error:', err)); // Log errors
+        });
+    </script>
+</body>
+
+</html>

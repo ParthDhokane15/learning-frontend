@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Codes Demo</title>
+</head>
+
+<body>
+    <h1>HTTP Status Codes Demonstration</h1>
+    <button id="getValid">GET Valid Resource</button>
+    <button id="getInvalid">GET Invalid Resource</button>
+    <button id="postResource">POST Resource</button>
+
+    <div id="output" style="margin-top: 20px; border: 1px solid black; padding: 10px;">
+        <h2>Status:</h2>
+        <pre id="status"></pre>
+    </div>
+
+    <script>
+        const statusOutput = document.getElementById("status");
+
+        // GET a Valid Resource (200 OK)
+        document.getElementById("getValid").addEventListener("click", () => {
+            fetch('https://jsonplaceholder.typicode.com/posts/1')
+                .then(response => {
+                    statusOutput.textContent = `Status: ${response.status} - ${response.statusText}`;
+                })
+                .catch(err => console.error('GET error:', err));
+        });
+
+        // GET an Invalid Resource (404 Not Found)
+        document.getElementById("getInvalid").addEventListener("click", () => {
+            fetch('https://jsonplaceholder.typicode.com/posts/99999')
+                .then(response => {
+                    statusOutput.textContent = `Status: ${response.status} - ${response.statusText}`;
+                })
+                .catch(err => console.error('GET error:', err));
+        });
+
+        // POST a Resource (201 Created)
+        document.getElementById("postResource").addEventListener("click", () => {
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: 'New Post',
+                    body: 'This is a new post created via POST.',
+                    userId: 1,
+                }),
+            })
+                .then(response => {
+                    statusOutput.textContent = `Status: ${response.status} - ${response.statusText}`;
+                })
+                .catch(err => console.error('POST error:', err));
+        });
+    </script>
+</body>
+
+</html>

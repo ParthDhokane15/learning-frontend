@@ -4,29 +4,107 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tailwind Basics</title>
-    <!-- Link to your built Tailwind CSS -->
+    <title>Tailwind Basics with Selectors</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-   
+    <style>
+        /* Global Selector */
+        * {
+            color: hotpink;
+        }
+
+        /* Element Selector */
+        h1 {
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Class Selector */
+        .special {
+            background-color: lightblue;
+            padding: 10px;
+            border: 2px dashed violet;
+        }
+
+        /* ID Selector */
+        #unique-section {
+            font-size: 18px;
+            font-weight: bold;
+            border-left: 5px solid darkblue;
+            padding-left: 10px;
+        }
+
+        /* Group Selector */
+        h4,
+        p {
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        /* Descendant Selector */
+        .dark-mode p {
+            font-size: 14px;
+            color: gray;
+        }
+
+        /* Hover Pseudo-class */
+        .hover-effect:hover {
+            background-color: lightcoral;
+            color: white;
+        }
+
+        /* Responsive Media Query */
+        @media (min-width: 768px) {
+            .responsive-banner {
+                background-color: lightgreen;
+                color: darkgreen;
+            }
+        }
+    </style>
+    <!-- Global Selector (*)
+    Applied color: hotpink; to every element on the page.
+    
+    Element Selector (h1)
+    Styled all <h1> tags with font-family and text-transform.
+    
+    Class Selector (.special)
+    Styled .special with background color and border.
+
+    ID Selector (#unique-section)
+    Applied specific styles for the ID unique-section.
+
+    Group Selector (h4, p)
+    Styled both <h4> and <p> to have italicized text.
+
+    Descendant Selector (.dark-mode p)
+    Applied styles only to
+    <p> tags inside .dark-mode.
+
+    Hover Pseudo-class (:hover)
+    Changed background and text colors on hover for .hover-effect.
+
+    Responsive Media Query (@media)
+    Changed styles for .responsive-banner when screen width is 768px or more. -->
+
+    
 </head>
 
 <body class="bg-black text-gray-800 p-4">
 
     <!-- Cyan Banner -->
-    <div class="bg-cyan-200 h-20 w-full border-4 border-violet-700 rounded-3xl my-2 shadow-md">
+    <div class="bg-cyan-200 h-20 w-full border-4 border-violet-700 rounded-3xl my-2 shadow-md special">
         <h1 class="text-6xl text-center text-blue-800 mt-2">hello</h1>
     </div>
 
     <!-- Flex Row -->
-    <div class="flex justify-end space-x-5 mt-4">
+    <div class="flex justify-end space-x-5 mt-4 hover-effect">
         <div class="h-16 w-16 rounded-full bg-green-500 hover:bg-green-600 transition duration-300 shadow"></div>
         <div class="h-16 w-16 rounded-full bg-orange-500 hover:bg-orange-600 transition duration-300 shadow"></div>
         <div class="h-16 w-16 rounded-full bg-white hover:bg-gray-200 transition duration-300 shadow"></div>
     </div>
 
     <!-- Flex Column -->
-    <div class="flex flex-col items-end justify-end space-y-4 mt-4">
+    <div id="unique-section" class="flex flex-col items-end justify-end space-y-4 mt-4">
         <div class="h-16 w-16 rounded-full bg-green-500 hover:bg-green-600 transition duration-300 shadow"></div>
         <div class="h-16 w-16 rounded-full bg-orange-500 hover:bg-orange-600 transition duration-300 shadow"></div>
         <div class="h-16 w-16 rounded-full bg-white hover:bg-gray-200 transition duration-300 shadow"></div>
@@ -41,7 +119,7 @@
 
     <!-- Responsive Background -->
     <div
-        class="sm:bg-amber-300 md:bg-amber-400 lg:bg-amber-500 xl:bg-amber-600 mt-6 border-4 rounded-3xl p-6 shadow-lg">
+        class="sm:bg-amber-300 md:bg-amber-400 lg:bg-amber-500 xl:bg-amber-600 mt-6 border-4 rounded-3xl p-6 shadow-lg responsive-banner">
         <h4 class="text-2xl md:text-4xl text-center font-bold">
             Hello guys, I change as per resolution
         </h4>
@@ -49,7 +127,7 @@
 
     <!-- Dark Mode Section -->
     <div
-        class="bg-white dark:bg-violet-700 text-black dark:text-white mt-6 border-4 rounded-3xl p-6 text-center shadow-lg">
+        class="bg-white dark:bg-violet-700 text-black dark:text-white mt-6 border-4 rounded-3xl p-6 text-center shadow-lg dark-mode">
         <h4 class="text-lg font-semibold mb-2">Dark mode application</h4>
         <p class="text-sm">This adjusts automatically to dark mode settings!</p>
     </div>
@@ -57,3 +135,4 @@
 </body>
 
 </html>
+
