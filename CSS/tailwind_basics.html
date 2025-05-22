@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind Basics</title>
+    <!-- Link to your built Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+   
+</head>
+
+<body class="bg-black text-gray-800 p-4">
+
+    <!-- Cyan Banner -->
+    <div class="bg-cyan-200 h-20 w-full border-4 border-violet-700 rounded-3xl my-2 shadow-md">
+        <h1 class="text-6xl text-center text-blue-800 mt-2">hello</h1>
+    </div>
+
+    <!-- Flex Row -->
+    <div class="flex justify-end space-x-5 mt-4">
+        <div class="h-16 w-16 rounded-full bg-green-500 hover:bg-green-600 transition duration-300 shadow"></div>
+        <div class="h-16 w-16 rounded-full bg-orange-500 hover:bg-orange-600 transition duration-300 shadow"></div>
+        <div class="h-16 w-16 rounded-full bg-white hover:bg-gray-200 transition duration-300 shadow"></div>
+    </div>
+
+    <!-- Flex Column -->
+    <div class="flex flex-col items-end justify-end space-y-4 mt-4">
+        <div class="h-16 w-16 rounded-full bg-green-500 hover:bg-green-600 transition duration-300 shadow"></div>
+        <div class="h-16 w-16 rounded-full bg-orange-500 hover:bg-orange-600 transition duration-300 shadow"></div>
+        <div class="h-16 w-16 rounded-full bg-white hover:bg-gray-200 transition duration-300 shadow"></div>
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-3 gap-4 mt-4 mx-2">
+        <div class="h-16 w-16 rounded-full bg-green-500 hover:bg-green-600 transition duration-300 shadow"></div>
+        <div class="h-16 w-16 rounded-full bg-orange-500 hover:bg-orange-600 transition duration-300 shadow"></div>
+        <div class="h-16 w-16 rounded-full bg-white hover:bg-gray-200 transition duration-300 shadow"></div>
+    </div>
+
+    <!-- Responsive Background -->
+    <div
+        class="sm:bg-amber-300 md:bg-amber-400 lg:bg-amber-500 xl:bg-amber-600 mt-6 border-4 rounded-3xl p-6 shadow-lg">
+        <h4 class="text-2xl md:text-4xl text-center font-bold">
+            Hello guys, I change as per resolution
+        </h4>
+    </div>
+
+    <!-- Dark Mode Section -->
+    <div
+        class="bg-white dark:bg-violet-700 text-black dark:text-white mt-6 border-4 rounded-3xl p-6 text-center shadow-lg">
+        <h4 class="text-lg font-semibold mb-2">Dark mode application</h4>
+        <p class="text-sm">This adjusts automatically to dark mode settings!</p>
+    </div>
+
+</body>
+
+</html>
