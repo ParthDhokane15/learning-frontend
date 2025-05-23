@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speed Typer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200 min-h-screen flex items-center justify-center p-10">
+
+    <div id="difficulty-panel" class="absolute top-10 right-50 mb-4">
+        <div>
+            <label for="difficulty" class="mr-2">Difficulty:</label>
+            <select id="difficulty" class="border rounded px-2 py-1">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="settings-panel" class="absolute top-30 left-10 m-4 p-4 bg-white shadow rounded w-64">
+        <h3 class="text-xl font-bold mb-2">Account Info</h3>
+        <p><strong>User:</strong> <span id="setting-user">-</span></p>
+        <p><strong>Last Score:</strong> <span id="setting-last">-</span></p>
+        <p><strong>High Score:</strong> <span id="setting-high">-</span></p>
+    </div>
+
+    <div id="leaderboard-panel" class="absolute top-30 right-10 m-4 p-4 bg-white shadow rounded w-64">
+        <h3 class="text-xl font-bold mb-2 text-center">Leaderboard</h3>
+        <ul id="leaderboard-list" class="list-disc list-inside">
+            <!-- empty -->
+        </ul>
+    </div>
+
+    <div class="bg-white shadow rounded p-6 w-full max-w-md">
+        <h1 class="text-2xl font-bold">Speed Typer</h1>
+        <div class="flex justify-between mb-4">
+            <div>
+                <span class="font-semibold">Time Left:</span> <span id="time">10s</span>
+            </div>
+            <div>
+                <span class="font-semibold">Score:</span> <span id="score">0</span>
+            </div>
+        </div>
+
+        <div class="text-center mb-4">
+            <div id="word" class="text-3xl font-bold">loading...</div>
+        </div>
+
+
+        <div class="mb-4">
+            <input type="text" id="text-input" class="w-full border rounded px-3 py-2"
+                placeholder="Type the word here..." autofocus />
+        </div>
+
+        <div class="flex justify-between">
+            <button id="settings-btn" class="px-4 py-2 bg-gray-200 rounded">Settings</button>
+            <button id="leaderboard-btn" class="px-4 py-2 bg-gray-200 rounded">Leaderboard</button>
+            <button id="reload-btn" class="px-4 py-2 bg-blue-500 text-white rounded">Restart</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
