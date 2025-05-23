@@ -1,19 +1,19 @@
-// script.js
+  // script.js
 
-const words = [
-    'function','variable','object','array','string','element','random','program','javascript',
-    'html','css','document','window','keyboard','input','score','timer','difficulty','leaderboard',
-    'username','modal','restart','settings','type','speed','challenge','response','update','render',
-    'event','listener','focus','blur','calculate','start','end','duration','animate','transition',
-    'gradient','shadow','outline','border','padding','margin','font','icon','button','select','option',
-    'loading','success','failure','increase','decrease','click','hover','scale','rotate','translate',
-    'opacity','ease','linear','bounce','ping','pulse','spin','dropdown','panel','card','container',
-    'layout','flex','grid','align','justify','center','space','between','wrap','no','overflow','auto',
-    'scroll','before','after','pseudo','selector','class','attribute','value','property','merge','split',
-    'slice','concat','filter','map','reduce','sort','reverse','push','pop','shift','unshift','index',
-    'prototype','closure','callback','promise','async','await','stack','queue','tree','graph','algorithm'
-  ];
-  
+  const words = [
+      'function','variable','object','array','string','element','random','program','javascript',
+      'html','css','document','window','keyboard','input','score','timer','difficulty','leaderboard',
+      'username','modal','restart','settings','type','speed','challenge','response','update','render',
+      'event','listener','focus','blur','calculate','start','end','duration','animate','transition',
+      'gradient','shadow','outline','border','padding','margin','font','icon','button','select','option',
+      'loading','success','failure','increase','decrease','click','hover','scale','rotate','translate',
+      'opacity','ease','linear','bounce','ping','pulse','spin','dropdown','panel','card','container',
+      'layout','flex','grid','align','justify','center','space','between','wrap','no','overflow','auto',
+      'scroll','before','after','pseudo','selector','class','attribute','value','property','merge','split',
+      'slice','concat','filter','map','reduce','sort','reverse','push','pop','shift','unshift','index',
+      'prototype','closure','callback','promise','async','await','stack','queue','tree','graph','algorithm'
+    ];
+    
   const wordEl = document.getElementById('word');
   const inputEl = document.getElementById('text-input');
   const scoreEl = document.getElementById('score');
@@ -28,7 +28,7 @@ const words = [
   const userEl = document.getElementById('setting-user');
   const lastEl = document.getElementById('setting-last');
   const highEl = document.getElementById('setting-high');
-  
+
 
   let score = 0;
   let lastScore = 0;
@@ -37,7 +37,7 @@ const words = [
   let timerId;
   let currentUser = null;
   let gameOver = false;
-  
+
 
   function updateSettings() {
     userEl.innerText = currentUser || '-';
@@ -46,7 +46,7 @@ const words = [
     const entry = board.find(item => item.username === currentUser);
     highEl.innerText = entry ? entry.score : 0;
   }
-  
+
 
   const modalEl = document.createElement('div');
   function createAuthModal() {
@@ -67,7 +67,7 @@ const words = [
     document.getElementById('btnRegister').onclick = showRegisterForm;
     showLoginForm();
   }
-  
+
   function showLoginForm() {
     document.getElementById('authForm').innerHTML = `
       <input id=\"authUser\" placeholder=\"Username\" class=\"w-full mb-3 p-2 border rounded\" />
@@ -75,7 +75,7 @@ const words = [
     `;
     document.getElementById('submitAuth').onclick = handleLogin;
   }
-  
+
   function showRegisterForm() {
     document.getElementById('authForm').innerHTML = `
       <input id=\"authUser\" placeholder=\"New Username\" class=\"w-full mb-3 p-2 border rounded\" />
@@ -83,7 +83,7 @@ const words = [
     `;
     document.getElementById('submitAuth').onclick = handleRegister;
   }
-  
+
   function handleLogin() {
     const name = document.getElementById('authUser').value.trim();
     if (!name) return alert('Enter username');
@@ -93,7 +93,7 @@ const words = [
     document.body.removeChild(modalEl);
     startGame();
   }
-  
+
   function handleRegister() {
     const name = document.getElementById('authUser').value.trim();
     if (!name) return alert('Enter username');
@@ -108,17 +108,17 @@ const words = [
     document.body.removeChild(modalEl);
     startGame();
   }
-  
+
   function startGame() {
     resetGame();
     loadSettings();
     showRandomWord();
     inputEl.value = '';
     inputEl.focus();
-  
+
     clearInterval(timerId);
     timerId = setInterval(updateTimer, 1000);
-  
+
     inputEl.oninput = handleInput;
     reloadBtn.onclick = () => window.location.reload();
     settingsBtn.onclick = () => { 
@@ -129,20 +129,20 @@ const words = [
     renderLeaderboard();
     updateSettings();
   }
-  
+
   function resetGame() {
     score = 0;
     scoreEl.innerText = 0;
     gameOver = false;
   }
-  
+
   function loadSettings() {
     difficulty = localStorage.getItem('difficulty') || 'medium';
     diffEl.value = difficulty;
     time = difficulty === 'easy' ? 10 : difficulty === 'medium' ? 6 : 4;
     updateTimer();
   }
-  
+
   function changeDifficulty() {
     difficulty = diffEl.value;
     localStorage.setItem('difficulty', difficulty);
@@ -154,7 +154,7 @@ const words = [
     timerId = setInterval(updateTimer, 1000);
   }
 
-  
+
   function updateTimer() {
     
     if (time > 0) {
@@ -165,13 +165,13 @@ const words = [
       finishGame();
     }
   }
-  
+
 
   function showRandomWord() {
     const idx = Math.floor(Math.random() * words.length);
     wordEl.innerText = words[idx];
   }
-  
+
   function handleInput() {
     if (gameOver) return;
     if (inputEl.value.trim() === wordEl.innerText) {
@@ -205,7 +205,7 @@ const words = [
     updateSettings();
     alert('Game over! ' + currentUser + ', your score: ' + score);
   }
-  
+
   function renderLeaderboard() {
     const board = JSON.parse(localStorage.getItem('typingLeaderboard') || '[]');
     leaderboardList.innerHTML = '';
@@ -216,5 +216,5 @@ const words = [
       leaderboardList.appendChild(li);
     });
   }
-  
+
   createAuthModal();
